@@ -28,7 +28,8 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity android:name=".AlgorithmicSumGameActivity" />
-        <activity android:name=".ConnectThreeActivity"></activity>
+        <activity android:name=".ConnectThreeActivity" />
+        <activity android:name=".HollywoodActivity"></activity>
     </application>
 
 </manifest>

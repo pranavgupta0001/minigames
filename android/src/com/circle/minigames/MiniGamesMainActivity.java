@@ -35,8 +35,19 @@ public class MiniGamesMainActivity extends AppCompatActivity {
     }
     public  void CoinManGame(View view){
         Intent intent = new Intent(this, AndroidLauncher.class);
+        intent.putExtra("game", 1);
         startActivity(intent);
     }
+    public  void ConnectThree(View view){
+        Intent intent = new Intent(this, ConnectThreeActivity.class);
+        startActivity(intent);
+    }
+    public  void FlappyBird(View view){
+        Intent intent = new Intent(this, AndroidLauncher.class);
+        intent.putExtra("game", 2);
+        startActivity(intent);
+    }
+
 
 
 }
