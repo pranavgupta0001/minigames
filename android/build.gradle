@@ -77,7 +77,9 @@ task run(type: Exec) {
     }
 
     def adb = path + "/platform-tools/adb"
-    commandLine "$adb", 'shell', 'am', 'start', '-n', 'com.circle.minigames/com.circle.minigames' + '.Aer'
+    commandLine "$adb", 'shell', 'am', 'start', '-n', 'com.circle.minigames/com.circle.minigames' +
+
+'.Aer'
 }
 
 
@@ -95,7 +97,7 @@ idea {
                 builder.component(name: "FacetManager") {
                     facet(type: "android", name: "Android") {
                         configuration {
-                            option(name: "UPDATE_PROPEY_ILES " , value:"true")
+                            option(name: "UPDATE_PROEY_ILES  " , value:"true")
                         }
                     }
                 }

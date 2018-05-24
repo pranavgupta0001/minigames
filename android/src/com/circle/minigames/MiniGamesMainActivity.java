@@ -47,6 +47,10 @@ public class MiniGamesMainActivity extends AppCompatActivity {
         intent.putExtra("game", 2);
         startActivity(intent);
     }
+    public  void HollyWood(View view){
+        Intent intent = new Intent(this, HollywoodActivity.class);
+        startActivity(intent);
+    }
 
 
 
