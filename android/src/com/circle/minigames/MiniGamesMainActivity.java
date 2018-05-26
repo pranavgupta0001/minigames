@@ -3,28 +3,66 @@ package com.circle.minigames;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+
+import java.util.ArrayList;
 
 import static com.circle.minigames.R.layout.activity_mini_games_main;
 
 public class MiniGamesMainActivity extends AppCompatActivity {
-    TextView algorithmicGameTextView;
-    TextView coinManTextView;
+
+    private InterstitialAd mInterstitialAd;
+    public AdView mAdView;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
-
         setContentView(activity_mini_games_main);
+
+
+        MobileAds.initialize(this, "ca-app-pub-9431796220184727~4791568624");
+
+
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-9431796220184727/7813225896");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+
         Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT).show();
 
-        algorithmicGameTextView = findViewById(R.id.algorithmicGameTextView);
-        coinManTextView = findViewById(R.id.coinManTextView);
+        mInterstitialAd.setAdListener(new AdListener(){
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+            }
+
+            @Override
+            public void onAdFailedToLoad(int i) {
+                super.onAdFailedToLoad(i);
+                Log.d("TAG", Integer.toString(i));
+            }
+
+        });
 
 
     }
@@ -32,6 +70,14 @@ public class MiniGamesMainActivity extends AppCompatActivity {
     public  void AlgorithmicGame(View view){
         Intent intent = new Intent(this, AlgorithmicSumGameActivity.class);
         startActivity(intent);
+    }
+    public void adsGame(View view){
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        } else {
+            Log.d("TAG", "The interstitial wasn't loaded yet.");
+
+        }
     }
     public  void CoinManGame(View view){
         Intent intent = new Intent(this, AndroidLauncher.class);
@@ -49,6 +95,10 @@ public class MiniGamesMainActivity extends AppCompatActivity {
     }
     public  void HollyWood(View view){
         Intent intent = new Intent(this, HollywoodActivity.class);
+        startActivity(intent);
+    }
+    public  void TicTacToe(View view){
+        Intent intent = new Intent(this, TicTacToeActivity.class);
         startActivity(intent);
     }
 

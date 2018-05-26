@@ -1,73 +1,237 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/back1"
     tools:context=".MiniGamesMainActivity">
 
-    <TextView
-        android:id="@+id/coinManTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="112dp"
-        android:layout_marginStart="112dp"
-        android:layout_marginTop="328dp"
-        android:onClick="CoinManGame"
-        android:text="CoinMan"
-        android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/algorithmicGameTextView"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="232dp"
-        android:layout_marginEnd="80dp"
-        android:layout_marginRight="80dp"
-        android:onClick="AlgorithmicGame"
-        android:text="Algorithmic Game"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="56dp"
-        android:layout_marginEnd="136dp"
-        android:layout_marginRight="136dp"
-        android:onClick="ConnectThree"
-        android:text="Connect 3"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardBackgroundColor="@android:color/transparent">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="144dp"
-        android:layout_marginRight="144dp"
-        android:layout_marginTop="136dp"
-        android:onClick="FlappyBird"
-        android:text="Flappy Bird"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/hollywoodTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:onClick="HollyWood"
+                android:text="Hollywood"
+                android:textColor="@android:color/background_light"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                app:fontFamily="@font/bungee_shade"
+                app:layout_constraintBottom_toTopOf="@+id/algorithmicGameTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/flappyBirdTextView"
+                app:layout_constraintVertical_bias="0.0" />
+        </android.support.v7.widget.CardView>
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="132dp"
-        android:layout_marginRight="132dp"
-        android:layout_marginTop="56dp"
-        android:onClick="HollyWood"
-        android:text="Hollywood"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</android.support.constraint.ConstraintLayout>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardBackgroundColor="@android:color/transparent">
+
+            <TextView
+                android:id="@+id/algorithmicGameTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:onClick="AlgorithmicGame"
+                android:text="Algorithmic Game"
+                android:textColor="@android:color/background_light"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                app:fontFamily="@font/bungee_shade"
+                app:layout_constraintBottom_toTopOf="@+id/coinManTextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tictactoeTextView" />
+
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardBackgroundColor="@android:color/transparent">
+
+            <TextView
+                android:id="@+id/connecThreeTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:onClick="ConnectThree"
+                android:text="Connect 3"
+                android:textColor="@android:color/background_light"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                app:fontFamily="@font/bungee_shade"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardBackgroundColor="@android:color/transparent">
+
+
+            <TextView
+                android:id="@+id/coinManTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:onClick="CoinManGame"
+                android:text="CoinMan"
+                android:textColor="@android:color/background_light"
+                android:textSize="36dp"
+                android:textStyle="bold"
+                app:fontFamily="@font/bungee_shade"
+                app:layout_constraintBottom_toTopOf="@+id/connecThreeTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/algorithmicGameTextView" />
+
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardBackgroundColor="@android:color/transparent">
+
+
+            <TextView
+                android:id="@+id/adsTextView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:onClick="adsGame"
+                android:shadowColor="@android:color/background_light"
+                android:shadowDx="50"
+                android:shadowDy="50"
+                android:shadowRadius="100"
+                android:text="Knowledge"
+                android:textColor="@android:color/background_light"
+                android:textSize="36dp"
+                android:textStyle="bold"
+                app:fontFamily="@font/bungee_shade"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.498"
+                tools:layout_editor_absoluteX="0dp" />
+
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardBackgroundColor="@android:color/transparent">
+
+            <TextView
+                android:id="@+id/flappyBirdTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:onClick="FlappyBird"
+                android:text="Flappy Bird"
+                android:textColor="@android:color/background_light"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                app:fontFamily="@font/bungee_shade"
+                app:layout_constraintBottom_toTopOf="@+id/tictactoeTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardBackgroundColor="@android:color/transparent">
+
+            <TextView
+                android:id="@+id/tictactoeTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:onClick="TicTacToe"
+                android:text="Tic Tac Toe"
+                android:textColor="@android:color/background_light"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                app:fontFamily="@font/bungee_shade"
+                app:layout_constraintBottom_toTopOf="@+id/algorithmicGameTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/flappyBirdTextView"
+                app:layout_constraintVertical_bias="0.0" />
+
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardBackgroundColor="@android:color/transparent">
+
+
+            <TextView
+                android:id="@+id/adsTextView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:onClick="adsGame"
+                android:shadowColor="@android:color/background_light"
+                android:shadowDx="50"
+                android:shadowDy="50"
+                android:shadowRadius="100"
+                android:text="Advertisement"
+                android:textColor="@android:color/background_light"
+                android:textSize="36dp"
+                android:textStyle="bold"
+                app:fontFamily="@font/bungee_shade"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.498"
+                tools:layout_editor_absoluteX="0dp" />
+
+
+        </android.support.v7.widget.CardView>
+
+
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-9431796220184727/5647061703"
+            ads:layout_constraintEnd_toEndOf="parent"
+            tools:layout_editor_absoluteY="461dp"></com.google.android.gms.ads.AdView>
+
+
+    </LinearLayout>
+</ScrollView>

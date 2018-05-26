@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ConnectThreeActivity extends AppCompatActivity {
     // 0: yellow, 1: red, 2: empty
@@ -18,6 +19,8 @@ public class ConnectThreeActivity extends AppCompatActivity {
     int activePlayer = 0;
 
     boolean gameActive = true;
+
+    int x = 0;
 
     public void dropIn(View view) {
 
@@ -70,8 +73,10 @@ public class ConnectThreeActivity extends AppCompatActivity {
                     Button playAgainButton = (Button) findViewById(R.id.playAgainButton);
 
                     TextView winnerTextView = (TextView) findViewById(R.id.winnerTextView);
+                    winner = winner + " has WON!";
 
-                    winnerTextView.setText(winner + " has won!");
+                    winnerTextView.setText(winner);
+                    Toast.makeText(this, winner, Toast.LENGTH_SHORT).show();
 
                     playAgainButton.setVisibility(View.VISIBLE);
 
@@ -80,6 +85,31 @@ public class ConnectThreeActivity extends AppCompatActivity {
                 }
 
             }
+            for (int i = 0; i < 9; i++) {
+
+                if (gameState[i] != 2) {
+                    x++;
+                }
+
+                if (x == 9) {
+                    gameActive = false;
+                    Button playAgainButton = (Button) findViewById(R.id.playAgainButton);
+
+                    TextView winnerTextView = (TextView) findViewById(R.id.winnerTextView);
+
+                    winnerTextView.setText("No one has won!");
+                    Toast.makeText(this, "NO ONE WON", Toast.LENGTH_SHORT).show();
+
+                    playAgainButton.setVisibility(View.VISIBLE);
+
+                    winnerTextView.setVisibility(View.VISIBLE);
+
+
+                }
+
+            }
+            x = 0;
+
         }
     }
 
@@ -119,5 +149,6 @@ public class ConnectThreeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connect_three);
+        setTitle("Connect 3");
     }
 }

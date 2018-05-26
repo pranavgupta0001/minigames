@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -29,13 +30,12 @@ public class AlgorithmicSumGameActivity extends AppCompatActivity {
     TextView timerTextView;
     Button resetButton;
     ConstraintLayout gameLayout;
-
+    int result = 0 ;
     public void reset(View view){
         resetButton.setVisibility(View.INVISIBLE);
-        score = 0;
-        noqu = 0 ;
+        resultTextView.setVisibility(View.INVISIBLE);
+
         timerTextView.setText("30s");
-        scoreTextView.setText(Integer.toString(score) + "/" + Integer.toString(noqu));
         newqu();
 
         new CountDownTimer(30100, 1000){
@@ -46,15 +46,24 @@ public class AlgorithmicSumGameActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                resultTextView.setText("Done");
+                resultTextView.setVisibility(View.VISIBLE);
+                resultTextView.setText("Time Over\n"+ score +" Correct out of " +noqu);
+                Toast.makeText(getApplicationContext(), "Time Over", Toast.LENGTH_SHORT).show();
                 resetButton.setVisibility(View.VISIBLE);
             }
         }.start();
+
+        score = 0;
+        result=0;
+        noqu = 0 ;
+        scoreTextView.setText(Integer.toString(score) + "/" + Integer.toString(noqu));
 
     }
 
     public void start(View view) {
         goBut.setVisibility(View.INVISIBLE);
+        resultTextView.setText("Select Correct Answer");
+        resultTextView.setVisibility(View.VISIBLE);
         reset(findViewById(R.id.sumTextView));
         gameLayout.setVisibility(View.VISIBLE);
     }
@@ -94,8 +103,8 @@ public class AlgorithmicSumGameActivity extends AppCompatActivity {
             score++;
         } else {
             resultTextView.setText("Wrong :(");
-            Log.i("Wrong", "Wrong answer");
         }
+        resultTextView.setVisibility(View.VISIBLE);
         noqu++;
         scoreTextView.setText(Integer.toString(score) + "/" + Integer.toString(noqu));
         newqu();
@@ -105,6 +114,7 @@ public class AlgorithmicSumGameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_algorithmic_sum_game);
+        setTitle("Sum sUm suM");
         goBut = findViewById(R.id.start);
         scoreTextView = findViewById(R.id.scoreTextView);
         timerTextView = findViewById(R.id.timerTextView);

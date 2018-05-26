@@ -8,17 +8,24 @@
 
     <Button
         android:id="@+id/start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="288dp"
+        android:layout_height="204dp"
         android:layout_margin="7dp"
+        android:layout_marginBottom="1000dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="100dp"
         android:autoSizeMaxTextSize="99dp"
-        android:background="@drawable/ic_launcher"
+        android:background="@drawable/back1"
         android:fontFamily="serif"
         android:onClick="start"
         android:padding="8dp"
         android:text="Go"
         android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
-        android:textSize="66sp"
+        android:textSize="100sp"
+        android:textStyle="bold"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -74,15 +81,17 @@
             android:id="@+id/resultTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
             android:layout_marginTop="8dp"
             android:text="Correct"
+            android:textAlignment="center"
             android:textSize="36sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:fontFamily="sans-serif"
+            app:layout_constraintBottom_toTopOf="@+id/resetButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/gridLayout"
-            app:layout_constraintVertical_bias="0.317" />
+            app:layout_constraintTop_toBottomOf="@+id/gridLayout" />
 
         <android.support.v7.widget.GridLayout
             android:id="@+id/gridLayout"
@@ -171,6 +180,18 @@
             android:textSize="36sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView11"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.509"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/resultTextView"
+            app:srcCompat="@drawable/backmath" />
     </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

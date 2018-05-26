@@ -1,7 +1,9 @@
 package com.circle.minigames;
 
+import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,6 +32,7 @@ public class HollywoodActivity extends AppCompatActivity {
     Button button1;
     Button button2;
     Button button3;
+    private ProgressDialog pDialog;
 
     public void newQuestion() {
         try {
@@ -126,6 +129,12 @@ public class HollywoodActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hollywood);
+//
+//        pDialog = new ProgressDialog(this, R.style.StyledDialog);
+        pDialog.setCancelable(false);
+        pDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        setTitle("HollyWood");
         DownloadTask task = new DownloadTask();
         String result = null;
         imageView = findViewById(R.id.imageView);
