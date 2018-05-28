@@ -1,16 +1,25 @@
 package com.circle.minigames;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -32,9 +41,13 @@ public class HollywoodActivity extends AppCompatActivity {
     Button button1;
     Button button2;
     Button button3;
-    private ProgressDialog pDialog;
+    ProgressDialog pDialog;
+
 
     public void newQuestion() {
+
+            hideDialog();
+
         try {
             Random rand = new Random();
 
@@ -92,6 +105,7 @@ public class HollywoodActivity extends AppCompatActivity {
                 return mtBitmap;
             } catch (Exception e) {
                 e.printStackTrace();
+
                 return null;
             }
         }
@@ -119,48 +133,101 @@ public class HollywoodActivity extends AppCompatActivity {
                 return result;
             } catch (Exception e) {
                 e.printStackTrace();
+
+                hideDialog();
+
+
                 return null;
             }
         }
 
     }
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hollywood);
 //
-//        pDialog = new ProgressDialog(this, R.style.StyledDialog);
+        pDialog = new ProgressDialog(this, R.style.StyledDialog);
         pDialog.setCancelable(false);
-        pDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        pDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.BLACK));
 
         setTitle("HollyWood");
-        DownloadTask task = new DownloadTask();
-        String result = null;
-        imageView = findViewById(R.id.imageView);
-        button0 = findViewById(R.id.button0);
-        button1 = findViewById(R.id.button1);
-        button2 = findViewById(R.id.button2);
-        button3 = findViewById(R.id.button3);
-        try {
-            result = task.execute("http://www.posh24.se/kandisar").get();
-            String[] splitResult = result.split("<div class=\"sidebarContainer\">");
+    }
 
-            Pattern p = Pattern.compile("img src=\"(.*?)\"");
-            Matcher m = p.matcher(splitResult[0]);
-            while (m.find()) {
-                celebURLs.add(m.group(1));
+    public void StartHollywood(View view) {
+
+        showDialog();
+        pDialog.setMessage("Loading ...");
+        if (haveNetworkConnection()) {
+            TextView textView = findViewById(R.id.goTextView);
+            textView.setVisibility(View.INVISIBLE);
+            LinearLayout linearLayout = findViewById(R.id.linearLayout);
+            linearLayout.setVisibility(View.VISIBLE);
+            Snackbar.make(view, "Loading Hollywood...", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+
+            DownloadTask task = new DownloadTask();
+            String result = null;
+            imageView = findViewById(R.id.imageView);
+            button0 = findViewById(R.id.button0);
+            button1 = findViewById(R.id.button1);
+            button2 = findViewById(R.id.button2);
+            button3 = findViewById(R.id.button3);
+            try {
+                result = task.execute("http://www.posh24.se/kandisar").get();
+                String[] splitResult = result.split("<div class=\"sidebarContainer\">");
+
+                Pattern p = Pattern.compile("img src=\"(.*?)\"");
+                Matcher m = p.matcher(splitResult[0]);
+                while (m.find()) {
+                    celebURLs.add(m.group(1));
+                }
+                p = Pattern.compile("alt=\"(.*?)\"");
+                m = p.matcher(splitResult[0]);
+                while (m.find()) {
+                    celebNames.add(m.group(1));
+                }
+                newQuestion();
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+
             }
-            p = Pattern.compile("alt=\"(.*?)\"");
-            m = p.matcher(splitResult[0]);
-            while (m.find()) {
-                celebNames.add(m.group(1));
-            }
-            newQuestion();
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        }else {
+            Toast.makeText(this, "Internet Connection Problem. Try Again", Toast.LENGTH_SHORT).show();
+            hideDialog();
         }
+        //hiding the progressbar after completion
+    }
+
+    private boolean haveNetworkConnection() {
+        boolean haveConnectedWifi = false;
+        boolean haveConnectedMobile = false;
+
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo[] netInfo = cm.getAllNetworkInfo();
+        for (NetworkInfo ni : netInfo) {
+            if (ni.getTypeName().equalsIgnoreCase("WIFI"))
+                if (ni.isConnected())
+                    haveConnectedWifi = true;
+            if (ni.getTypeName().equalsIgnoreCase("MOBILE"))
+                if (ni.isConnected())
+                    haveConnectedMobile = true;
+        }
+        return haveConnectedWifi || haveConnectedMobile;
+    }
+
+    private void showDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hideDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
     }
 }

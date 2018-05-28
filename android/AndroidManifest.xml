@@ -13,8 +13,13 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+
+        android:drawable="@drawable/logo"
+        android:roundIcon="@mipmap/ic_launcher"
+
         android:theme="@style/AppTheme">
         <activity android:name=".MiniGamesMainActivity">
             <intent-filter>
@@ -31,11 +36,13 @@
         <activity android:name=".AlgorithmicSumGameActivity" />
         <activity android:name=".ConnectThreeActivity" />
         <activity android:name=".HollywoodActivity" />
-        <activity android:name=".TicTacToeActivity"></activity>
+        <activity android:name=".TicTacToeActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <activity android:name=".MyAdsActivity"></activity>
     </application>
 
 </manifest>

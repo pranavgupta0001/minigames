@@ -1,6 +1,9 @@
 package com.circle.minigames;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -44,7 +47,7 @@ public class MiniGamesMainActivity extends AppCompatActivity {
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
 
         mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
+        final AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
 
@@ -54,15 +57,22 @@ public class MiniGamesMainActivity extends AppCompatActivity {
             @Override
             public void onAdClosed() {
                 super.onAdClosed();
+                mInterstitialAd.loadAd(new AdRequest.Builder().build());
             }
 
             @Override
             public void onAdFailedToLoad(int i) {
                 super.onAdFailedToLoad(i);
-                Log.d("TAG", Integer.toString(i));
             }
 
         });
+        mAdView.setAdListener(new AdListener(){
+            @Override
+            public void onAdClosed() {
+                mAdView.loadAd(adRequest);
+            }
+        });
+
 
 
     }
@@ -75,7 +85,10 @@ public class MiniGamesMainActivity extends AppCompatActivity {
         if (mInterstitialAd.isLoaded()) {
             mInterstitialAd.show();
         } else {
-            Log.d("TAG", "The interstitial wasn't loaded yet.");
+            Intent intent = new Intent(getApplicationContext(), MyAdsActivity.class);
+            startActivity(intent);
+            Toast.makeText(getApplicationContext(), "Internet Connection Problem.", Toast.LENGTH_SHORT)
+                    .show();
 
         }
     }
@@ -94,6 +107,7 @@ public class MiniGamesMainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public  void HollyWood(View view){
+
         Intent intent = new Intent(this, HollywoodActivity.class);
         startActivity(intent);
     }
@@ -101,7 +115,5 @@ public class MiniGamesMainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, TicTacToeActivity.class);
         startActivity(intent);
     }
-
-
 
 }
