@@ -125,10 +125,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:onClick="adsGame"
-                android:shadowColor="@android:color/background_light"
-                android:shadowDx="50"
-                android:shadowDy="50"
-                android:shadowRadius="100"
+
                 android:text="Knowledge"
                 android:textColor="@android:color/background_light"
                 android:textSize="36dp"
@@ -203,10 +200,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:onClick="adsGame"
-                android:shadowColor="@android:color/background_light"
-                android:shadowDx="50"
-                android:shadowDy="50"
-                android:shadowRadius="100"
+
                 android:text="Advertisement"
                 android:textColor="@android:color/background_light"
                 android:textSize="36dp"
