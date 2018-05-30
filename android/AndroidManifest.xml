@@ -13,13 +13,10 @@
 
     <application
         android:allowBackup="true"
-
         android:drawable="@drawable/logo"
         android:icon="@mipmap/ic_launcher"
-
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher"
-
         android:theme="@style/AppTheme">
         <activity android:name=".MiniGamesMainActivity">
             <intent-filter>
@@ -42,7 +39,9 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".MyAdsActivity"></activity>
+        <activity android:name=".MyAdsActivity" />
+        <activity android:name=".menuitem.AboutUsActivity" />
+        <activity android:name=".menuitem.ContactUsActivity"></activity>
     </application>
 
 </manifest>
