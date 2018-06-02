@@ -41,7 +41,8 @@
 
         <activity android:name=".MyAdsActivity" />
         <activity android:name=".menuitem.AboutUsActivity" />
-        <activity android:name=".menuitem.ContactUsActivity"></activity>
+        <activity android:name=".menuitem.ContactUsActivity" />
+        <activity android:name=".UnderConstruction"></activity>
     </application>
 
 </manifest>

@@ -1,10 +1,13 @@
 package com.circle.minigames;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.support.v4.view.GravityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -38,7 +41,6 @@ public class MiniGamesMainActivity extends AppCompatActivity {
     public AdView mAdView;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,9 +52,7 @@ public class MiniGamesMainActivity extends AppCompatActivity {
         setContentView(activity_mini_games_main);
 
 
-
         MobileAds.initialize(this, "ca-app-pub-9431796220184727~4791568624");
-
 
 
         mInterstitialAd = new InterstitialAd(this);
@@ -66,7 +66,7 @@ public class MiniGamesMainActivity extends AppCompatActivity {
 
         Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT).show();
 
-        mInterstitialAd.setAdListener(new AdListener(){
+        mInterstitialAd.setAdListener(new AdListener() {
             @Override
             public void onAdClosed() {
                 super.onAdClosed();
@@ -79,13 +79,12 @@ public class MiniGamesMainActivity extends AppCompatActivity {
             }
 
         });
-        mAdView.setAdListener(new AdListener(){
+        mAdView.setAdListener(new AdListener() {
             @Override
             public void onAdClosed() {
                 mAdView.loadAd(adRequest);
             }
         });
-
 
 
     }
@@ -106,7 +105,6 @@ public class MiniGamesMainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         switch (id) {
             case R.id.nav_home:
-                startActivity(new Intent(this, MiniGamesMainActivity.class));
                 break;
             case R.id.nav_share:
                 try {
@@ -126,7 +124,9 @@ public class MiniGamesMainActivity extends AppCompatActivity {
 
 
             case R.id.nav_rating:
-//                startActivity(new Intent(this, RateUs.class));
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.circle.minigames"));
+                startActivity(intent);
                 break;
             case R.id.nav_about_us:
                 startActivity(new Intent(this, AboutUsActivity.class));
@@ -136,17 +136,30 @@ public class MiniGamesMainActivity extends AppCompatActivity {
             case R.id.nav_contact_us:
                 startActivity(new Intent(this, ContactUsActivity.class));
                 break;
+            case R.id.nav_help_feedback:
+                startActivity(new Intent(this, UnderConstruction.class));
+                break;
+
+            case R.id.nav_terms:
+                startActivity(new Intent(this, UnderConstruction.class));
+                break;
+            case R.id.nav_exit:
+                onBackPressed();
+                break;
 
 
 
         }
         return false;
     }
-    public  void AlgorithmicGame(View view){
+
+
+    public void AlgorithmicGame(View view) {
         Intent intent = new Intent(this, AlgorithmicSumGameActivity.class);
         startActivity(intent);
     }
-    public void adsGame(View view){
+
+    public void adsGame(View view) {
         if (mInterstitialAd.isLoaded()) {
             mInterstitialAd.show();
         } else {
@@ -157,28 +170,61 @@ public class MiniGamesMainActivity extends AppCompatActivity {
 
         }
     }
-    public  void CoinManGame(View view){
+
+    public void CoinManGame(View view) {
         Intent intent = new Intent(this, AndroidLauncher.class);
         intent.putExtra("game", 1);
         startActivity(intent);
     }
-    public  void ConnectThree(View view){
+
+    public void ConnectThree(View view) {
         Intent intent = new Intent(this, ConnectThreeActivity.class);
         startActivity(intent);
     }
-    public  void FlappyBird(View view){
+
+    public void FlappyBird(View view) {
         Intent intent = new Intent(this, AndroidLauncher.class);
         intent.putExtra("game", 2);
         startActivity(intent);
     }
-    public  void HollyWood(View view){
+
+    public void HollyWood(View view) {
 
         Intent intent = new Intent(this, HollywoodActivity.class);
         startActivity(intent);
     }
-    public  void TicTacToe(View view){
+
+    public void TicTacToe(View view) {
         Intent intent = new Intent(this, TicTacToeActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("Exit Mini Games");
+        alertDialogBuilder
+                .setMessage("Click yes to exit!")
+                .setCancelable(false)
+                .setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                moveTaskToBack(true);
+                                android.os.Process.killProcess(android.os.Process.myPid());
+                                System.exit(1);
+                            }
+                        })
+
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+
     }
 
 }

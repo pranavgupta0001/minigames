@@ -26,12 +26,4 @@ public class AboutUsActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onBackPressed() {
-        intent = new Intent(this, MiniGamesMainActivity.class);
-        startActivity(intent);
-        intent.addCategory(Intent.CATEGORY_HOME);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        this.finish();
-    }
 }

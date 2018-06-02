@@ -25,5 +25,17 @@
         android:id="@+id/nav_contact_us"
         android:icon="@drawable/navigation_message_us"
         android:title="Contact Us" />
+    <item
+        android:id="@+id/nav_help_feedback"
+        android:icon="@drawable/navigation_about_us"
+        android:title="Help &amp; Feedback" />
+    <item
+        android:id="@+id/nav_terms"
+        android:icon="@drawable/navigation_share_icon"
+        android:title="Terms of Service" />
+    <item
+        android:id="@+id/nav_exit"
+        android:icon="@drawable/navigation_share_icon"
+        android:title="Exit" />
 
 </menu>
